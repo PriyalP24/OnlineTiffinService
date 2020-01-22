@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Tiffin Service</title>
+</head>
+<body>
+<header style="background-color:#b0adac">
+    <center>
+        <h1>Welcome {{username}} :)</h1>
+    </center>
+
+    <form action="/signout" method="POST">
+        <br><br><br> <div align="right"><button>SIGNOUT</button></div>
+    </form>
+</header>
+
+<main>
+
+    <center>
+
+            <strong><h1>Menu</h1></strong><br><br>
+            <div><h3>Select Tiffin:</h3></div>
+        <table border="1x solid black">
+            <tr>
+
+                <th>Id</th>
+                <th>Item</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Process</th>
+
+            </tr>
+
+
+                {% for var in data.menu%}
+                <tr>
+                    <td>{{var.id}}</td>
+                    <td><img src="{{var.image}} " height="42" width="42"></td>
+                    <td>{{var.name}}</td>
+
+                    <td><input type="number" min="0" id="{{var.name}}">{{var.quantity}} </td>
+                    <td>{{var.price}}</td>
+                    <td><button onclick=add({{var.name | tojson}},{{var.image | tojson}},{{var.price | tojson}})>Add To Cart</button></td>
+                </tr>
+                {% endfor%}
+
+
+    </table>
+
+
+            <br><br><br><br>
+
+        <button onclick=display()>GoToCart</button>
+
+
+
+
+
+    </center>
+
+
+</main>
+<script type="text/javascript">
+ var cart = {}
+ function add(item,image,price){
+  cart[item]=[price,document.getElementById(item).value,image]
+  console.log(cart)}
+
+ function display()
+ {
+     var xhttp = new XMLHttpRequest();
+            url = "http://127.0.0.1:5000/cart?data="+JSON.stringify(cart)
+            xhttp.open("GET", url , false);
+            xhttp.send();
+            document.getElementById("demo").innerHTML = xhttp.responseText;
+ }
+
+</script>
+<div id="demo"></div>
+</body>
+</html>

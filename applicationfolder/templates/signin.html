@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignIn</title>
+</head>
+<body>
+ {% if error %}
+    <p><strong>Error:</strong>{{ error }}</p>
+    {% endif %}
+    <center>
+        <form action="/signin" method= "post">
+            <div>Username:<input type="text" name="username" required></div>
+            <br><br><div>Password:<input type="password" name="password" secret required></div>
+           <br><br><br> <div><button>SignIn</button></div>
+        </form>
+    </center>
+
+</body>
+</html>

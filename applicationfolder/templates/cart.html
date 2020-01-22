@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cart</title>
+    <style>
+        td{
+            align-content: center;
+        }
+    </style>
+</head>
+<body>
+<header style="background-color:#b0adac">
+    <center><h1 style="color:purple"><strong>Cart</strong></h1></center>
+</header>
+<main>
+
+    <center>
+        <div>Welcome {{username}}</div>
+
+        <h1><strong>Item added successfully</strong></h1>
+        <form action="\ShoppingCart" method="POST">
+        <table border="1x solid black">
+            <thead>
+                <tr>
+
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                    <th>Total</th>
+                    <th>Proceed</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for key,value in data.items() %}
+                    <tr>
+                        <td><img src="{{value[2]}}" height="42" width="42"></td>
+                        <td>{{key}}</td>
+
+                        <td>{{value[1]}}</td>
+                        <td>{{value[0]}}</td>
+                        <td>{{(value[0])*(value[1])}}</td>
+
+                        <td><center><button>Buy</button></center></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+</form>
+</center>
+
+
+</main>
+
+</body>
+</html>
